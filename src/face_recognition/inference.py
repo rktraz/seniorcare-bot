@@ -54,12 +54,15 @@ while True:
     elapsed_time = time.time() - start_time
     if elapsed_time > DETECTION_INTERVAL and detected_persons and len(detected_persons) > MIN_DETECTIONS: 
         prob_person, part = determine_person_presence(detected_persons)
-        if part >= PERSON_CONF: 
-            print("\n\n")
-            print(f"OH FUCK I SEE {prob_person}!!!!! ")
-            print(f"Total faces I detected during last {DETECTION_INTERVAL} seconds: {len(detected_persons)}")
-            print(f"I saw {prob_person} on {part}% frames which included faces!")
-            print("\n\n")
+        try:
+            if part >= PERSON_CONF: 
+                print("\n\n")
+                print(f"I deninitely can see {prob_person}!!!!! ")
+                print(f"Total faces I detected during last {DETECTION_INTERVAL} seconds: {len(detected_persons)}")
+                print(f"I saw {prob_person} on {part}% frames which included faces!")
+                print("\n\n")
+        except:
+            pass
         # Well, here the business logic should start
         # I mean API calls to ChatGPT, Whisper etc...
         # new interval started
